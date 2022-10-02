@@ -24,7 +24,12 @@ export class PassportService extends BaseService {
    * 获取所有Passport列表
    */
   async getAllPassportList() {
-    const list = await this.passportEntityRepository.find();
-    return list.map(item => item.Passport);
+    // 去重
+    const list = await this.passportEntityRepository
+      .createQueryBuilder('passport')
+      .select('passport.Passport')
+      .distinct(true)
+      .getRawMany();
+    return list.map(item => item.passport_Passport);
   }
 }
