@@ -1,6 +1,6 @@
 import { Get, Inject, Provide, Query } from '@midwayjs/decorator';
 import { BaseController, CoolController } from '@cool-midway/core';
-import { PassportService } from '../service/goods';
+import { PassportService } from '../service/passpport';
 
 @Provide()
 @CoolController('/passport')
