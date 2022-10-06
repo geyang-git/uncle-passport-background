@@ -51,12 +51,14 @@ export class PassportService extends BaseService {
   async getAllPassportList() {
     // passport 表的 passportIso 对应 country 的 iso 字段
     // 在 country 获取对应的 nicename 并去重
-    return await this.passportEntityRepository
-      .createQueryBuilder('passport')
-      .leftJoinAndSelect('passport.Passport', 'country')
-      .select('country.nicename', 'name')
-      .addSelect('country.iso', 'iso')
-      .distinct(true)
-      .getRawMany();
+    return (
+      await this.passportEntityRepository
+        .createQueryBuilder('passport')
+        .leftJoinAndSelect('passport.Passport', 'country')
+        .select('country.nicename', 'name')
+        .addSelect('country.iso', 'iso')
+        .distinct(true)
+        .getRawMany()
+    ).filter(item => item.name);
   }
 }
