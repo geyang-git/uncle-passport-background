@@ -1,11 +1,11 @@
 import { EntityModel } from '@midwayjs/orm';
 import { Column, OneToMany, PrimaryColumn } from 'typeorm';
-import { PassportEntity } from './passport_index';
+import { PassportIndexEntity } from './passport_index';
 
 @EntityModel('country')
 export class CountryEntity {
-  @OneToMany(type => PassportEntity, passport => passport.Passport)
-  @OneToMany(type => PassportEntity, passport => passport.Destination)
+  @OneToMany(type => PassportIndexEntity, passport => passport.Passport)
+  @OneToMany(type => PassportIndexEntity, passport => passport.Destination)
   @Column({ comment: 'iso' })
   @PrimaryColumn()
   iso: string;

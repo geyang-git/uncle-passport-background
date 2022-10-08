@@ -1,4 +1,4 @@
-import { Get, Inject, Provide, Query } from '@midwayjs/decorator';
+import { Body, Get, Inject, Post, Provide } from '@midwayjs/decorator';
 import { BaseController, CoolController } from '@cool-midway/core';
 import { PassportService } from '../service/passpport';
 
@@ -8,15 +8,20 @@ export class PassportController extends BaseController {
   @Inject()
   passportService: PassportService;
 
-  @Get()
-  async passport(@Query('passport') passport: string) {
-    const data = await this.passportService.getPassportList({
-      Passport: passport,
+  @Post()
+  async passport(
+    @Body('passport') passport: string[],
+    @Body('destination') destination: string[],
+    @Body('color') color: string[]
+  ) {
+    const data = await this.passportService.getData({
+      passport,
+      destination,
+      color,
     });
     return this.ok(data);
   }
 
-  // getAllPassportList
   @Get('/all')
   async getAllPassportList() {
     const data = await this.passportService.getAllPassportList();
