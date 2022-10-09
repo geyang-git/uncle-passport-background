@@ -18,6 +18,38 @@ export class PassportService extends BaseService {
   public passportEntityRepository: Repository<PassportEntity>;
 
   /**
+   * 根据Passport获得列表
+   */
+  async getPassportList(data: { Passport: string }) {
+    const passport = await this.countryEntityRepository.findOne({
+      where: { iso: data.Passport },
+    });
+    if (!passport) {
+      return [];
+    }
+    const list = await this.passportIndexEntityRepository.find({
+      where: {
+        Passport: passport,
+      },
+      relations: ['Destination'],
+      select: ['Destination', 'Requirement'],
+    });
+    // 以Requirement分组统计
+    const result = {};
+    list.forEach(item => {
+      const Requirement = item.Requirement;
+      if (!result[Requirement]) {
+        result[Requirement] = [];
+      }
+      result[Requirement].push(item);
+    });
+    return {
+      list,
+      result,
+    };
+  }
+
+  /**
    * 根据筛选条件获取数据
    */
   async getData(data: {
