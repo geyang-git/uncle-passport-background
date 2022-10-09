@@ -11,7 +11,7 @@ export class PassportController extends BaseController {
   @Get()
   async passport(@Query('passport') passport: string) {
     const data = await this.passportService.getPassportList({
-      Passport: passport,
+      passport,
     });
     return this.ok(data);
   }

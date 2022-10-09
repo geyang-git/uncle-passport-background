@@ -20,9 +20,9 @@ export class PassportService extends BaseService {
   /**
    * 根据Passport获得列表
    */
-  async getPassportList(data: { Passport: string }) {
+  async getPassportList(data: { passport: string }) {
     const passport = await this.countryEntityRepository.findOne({
-      where: { iso: data.Passport },
+      where: { iso: data.passport },
     });
     if (!passport) {
       return [];
@@ -31,17 +31,18 @@ export class PassportService extends BaseService {
       where: {
         Passport: passport,
       },
-      relations: ['Destination'],
-      select: ['Destination', 'Requirement'],
+      relations: ['Destination', 'Requirement'],
     });
     // 以Requirement分组统计
-    const result = {};
+    const result = {
+      colorGroup: {},
+    };
     list.forEach(item => {
-      const Requirement = item.Requirement;
-      if (!result[Requirement]) {
-        result[Requirement] = [];
+      const color = item.Requirement.color;
+      if (!result.colorGroup[color]) {
+        result.colorGroup[color] = 0;
       }
-      result[Requirement].push(item);
+      result.colorGroup[color] += 1;
     });
     return {
       list,

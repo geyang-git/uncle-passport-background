@@ -10,11 +10,11 @@ import { PassportEntity } from './passport';
 @EntityModel('passport_index_tidy_iso2')
 export class PassportIndexEntity extends BaseEntity {
   @ManyToOne(type => CountryEntity, country => country.iso)
-  Passport: string;
+  Passport: CountryEntity;
 
   @ManyToOne(type => CountryEntity, country => country.iso)
-  Destination: string;
+  Destination: CountryEntity;
 
   @ManyToOne(type => PassportEntity, passport => passport.Requirement)
-  Requirement: string;
+  Requirement: PassportEntity;
 }
