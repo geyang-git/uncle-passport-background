@@ -39,6 +39,10 @@ export class PassportService extends BaseService {
     };
     list.forEach(item => {
       const color = item.Requirement.color;
+      // 跳过Requirement为-1的
+      if (item.Requirement.Requirement === '-1') {
+        return;
+      }
       if (!result.colorGroup[color]) {
         result.colorGroup[color] = 0;
       }
