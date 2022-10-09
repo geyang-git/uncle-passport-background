@@ -74,6 +74,9 @@ export class PassportService extends BaseService {
         .leftJoinAndSelect('passport.Passport', 'country')
         .select('country.nicename', 'name')
         .addSelect('country.iso', 'iso')
+        .addSelect('country.ms', 'ms')
+        .addSelect('country.rank', 'rank')
+        .addSelect('country.irank', 'irank')
         .distinct(true)
         .getRawMany()
     ).filter(item => item.name);

@@ -24,4 +24,16 @@ export class CountryEntity {
 
   @Column({ comment: 'phonecode' })
   phonecode: number;
+
+  @Column({ comment: 'ms', nullable: true })
+  ms: number;
+
+  @Column({ comment: 'cname', nullable: true })
+  cname: string;
+
+  @Column({ comment: 'rank', nullable: true })
+  rank: number;
+
+  @Column({ comment: 'irank', nullable: true })
+  irank: number;
 }
