@@ -19,8 +19,9 @@ export class LogController extends BaseController {
   async add() {
     console.log(this.ctx);
     await this.logService.addItem(
-      <string>this.ctx.headers['X-Real-IP'],
-      this.ctx.headers.referer
+      <string>this.ctx.headers['x-real-ip'],
+      this.ctx.headers.referer,
+      this.ctx.headers
     );
     return this.ok();
   }

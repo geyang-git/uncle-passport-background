@@ -12,10 +12,11 @@ export class LogService extends BaseService {
   @InjectEntityModel(LogEntity)
   logEntityRepository: Repository<LogEntity>;
 
-  async addItem(ip: string, url: string) {
+  async addItem(ip: string, url: string, headers: any) {
     const log = new LogEntity();
     log.ip = ip;
     log.url = url;
+    log.headers = JSON.stringify(headers);
     await this.logEntityRepository.save(log);
   }
 }
