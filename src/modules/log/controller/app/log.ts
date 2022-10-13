@@ -15,9 +15,9 @@ export class LogController extends BaseController {
   @Inject()
   ctx: Context;
 
-  @Post('')
+  @Post()
   async add() {
-    await this.logService.addItem(this.ctx.ip, this.ctx.headers.from);
+    await this.logService.addItem(this.ctx.ip, this.ctx.headers.referer);
     return this.ok();
   }
 }

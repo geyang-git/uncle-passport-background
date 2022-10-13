@@ -10,6 +10,6 @@ export class LogEntity extends BaseEntity {
   @Column({ comment: 'IP' })
   ip: string;
 
-  @Column({ comment: 'url' })
+  @Column({ comment: 'url', nullable: true })
   url: string;
 }
