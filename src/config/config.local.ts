@@ -7,7 +7,7 @@ import { MidwayConfig } from '@midwayjs/core';
 export default {
   orm: {
     type: 'mysql',
-    host: '101.35.190.169',
+    host: '127.0.0.1',
     port: 3306,
     username: 'passport',
     password: 'passport',
