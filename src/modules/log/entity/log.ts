@@ -13,6 +13,6 @@ export class LogEntity extends BaseEntity {
   @Column({ comment: 'url', nullable: true })
   url: string;
 
-  @Column({ comment: 'headers', nullable: true })
+  @Column({ comment: 'headers', nullable: true, type: 'longtext' })
   headers: string;
 }
