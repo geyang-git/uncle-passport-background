@@ -28,8 +28,8 @@ export class Form3Entity extends BaseEntity {
   interest: string;
 
   // 您的职业
-  @Column({ comment: '您的职业' })
-  occupation: string;
+  @Column({ comment: '您的职业 0-律师 1-会计 2-移民顾问 3-金融机构 4-其他' })
+  occupation: number;
 
   // 您希望我们如何联系您？
   @Column({ comment: '您希望我们如何联系 0-电话 1-邮件 2-传真' })
