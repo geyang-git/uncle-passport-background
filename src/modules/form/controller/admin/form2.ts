@@ -1,5 +1,5 @@
 import { BaseController, CoolController } from '@cool-midway/core';
-import { Form2Entity } from '../../entity/Form2';
+import { Form2Entity } from '../../entity/form2';
 
 /**s
  * 测试
